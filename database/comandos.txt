@@ -1,0 +1,50 @@
+
+
+composer global require laravel/installer
+composer create-project --prefer-dist laravel/laravel ""
+laravel new  ""
+composer require laravel/ui
+php artisan ui vue --auth
+
+npm i
+npm run dev
+npm run watch
+php artisan serve
+
+
+para cuando bajo de git
+composer install
+composer require greenter/greenter
+cp .env.example .env
+php artisan key:generate
+npm install
+
+creacion de modelos:
+
+php artisan make:model Nota -m
+
+despues de crear todos los modelos:
+
+php artisan migrate
+php artisan migrate:refresh
+php artisan migrate:fresh --seed
+
+comandos migracion:
+php artisan make:model EstadoCcpu -mcr
+php artisan make:model TipoCcpu -mcr
+php artisan make:model EleccionCcpu -mcr
+php artisan make:model CargoCcpu -mcr
+php artisan make:model IntegranteCcpu -mcr
+php artisan make:model VotoCcpu -mcr
+php artisan make:model PostulantesCcpu -mcr
+php artisan make:model GrupoCcpu -mcr
+
+comando seeder:
+php artisan make:seeder EstadoTableSeeder
+php artisan make:seeder UserTableSeeder
+
+creacion bd:
+DROP DATABASE `comprasb`;
+create schema comprasb ;
+use comprasb;
+INSERT INTO `comprasb`.`users` (`idPersona`, `idEst`, `idTipoU`, `email`, `password`) VALUES ('1', '1', '1', 'dannychavez141@gmail.com', '$2y$10$Ri3312Q4rIkKdoEbrYsD2OEj6.0NN2y6keELihasIJWQEd/XnuKTq');
