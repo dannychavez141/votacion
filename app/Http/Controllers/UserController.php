@@ -19,7 +19,7 @@ class UserController extends Controller
     public function all(Request $request)
     {
 
-        $datos = User::orWhereRaw("concat(codMat,dni,nomb,apepa) LIKE ?", ["%".$request['busq']."%"])->where("idEst","!=","1")->orderBy('id', 'ASC')->paginate(20);
+        $datos = User::orWhereRaw("concat(codMat,dni,nomb,apepa) LIKE ?", ["%".$request['busq']."%"])->where("idEst","=","2")->orderBy('id', 'ASC')->paginate(20);
 
         return [
             'pagination' => [
@@ -40,7 +40,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**
@@ -51,7 +51,19 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $dato = new User();
+        $dato->codMat = $request->get('codMat');
+        $dato->dni = $request->get('dni');
+        $dato->nomb = $request->get('nomb');
+        $dato->apepa = $request->get('apepa');
+        $dato->email = $request->get('email');
+        $dato->fmat = $request->get('fmat');
+        $dato->password = Hash::make($request->get('codMat'));
+        $dato->ext = "0";
+        $dato->idTipo = "2";
+        $dato->idEst = "1";
+        $dato->save();
+        return  $dato;
     }
 
     /**

@@ -21,6 +21,7 @@
 </head>
 <body style="background-image: url('img/fondo.jpg');background-size: cover; padding: 0em;">
     <div id="app">
+
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/home') }}">
@@ -73,4 +74,22 @@
         </main>
     </div>
 </body>
+<script>
+    function numeros(e){
+        var charCode
+charCode = e.keyCode
+status = charCode
+if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+return false
+}
+return true
+    }
+    function letras(e) { // 1
+tecla = (document.all) ? e.keyCode : e.which; // 2
+if (tecla==8) return true; // 3
+patron =/[A-Za-z\s-ñ/Ñ]/; // 4
+te = String.fromCharCode(tecla); // 5
+return patron.test(te); // 6
+}
+</script>
 </html>

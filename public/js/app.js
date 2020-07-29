@@ -2137,6 +2137,124 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2223,8 +2341,38 @@ __webpack_require__.r(__webpack_exports__);
         }
       }
     },
-    modiDato: function modiDato() {
+    crearDato: function crearDato() {
       var _this2 = this;
+
+      var url = this.urlg;
+      var modelo = new FormData();
+      console.log(this.dato["codMat"]);
+      console.log(this.dato["dni"]);
+      console.log(this.dato["nomb"]);
+      console.log(this.dato["apepa"]);
+      console.log(this.dato["email"]);
+      console.log(this.dato["fmat"]);
+      modelo.append("codMat", this.dato["codMat"]);
+      modelo.append("dni", this.dato["dni"]);
+      modelo.append("nomb", this.dato["nomb"]);
+      modelo.append("apepa", this.dato["apepa"]);
+      modelo.append("email", this.dato["email"]);
+      modelo.append("fmat", this.dato["fmat"]);
+      console.log(modelo);
+      axios.post(url, modelo, this.config).then(function (response) {
+        // console.log(response);
+        _this2.getdatos();
+
+        _this2.verformulario(1);
+
+        alert("Registro creado con éxito");
+        _this2.errors = [];
+      })["catch"](function (error) {
+        _this2.errors = "Corrija para poder crear con éxito";
+      });
+    },
+    modiDato: function modiDato() {
+      var _this3 = this;
 
       var url = this.urlg + "/" + this.dato.id;
       var modelo = new FormData();
@@ -2235,33 +2383,14 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.post(url, modelo, this.config).then(function (response) {
         //console.log(response);
-        _this2.getdatos();
-
-        _this2.verFormulario();
-
-        alert("Marca Modificado con éxito");
-        _this2.errors = [];
-      })["catch"](function (error) {
-        _this2.errors = "Corrija para poder editar con éxito";
-      });
-    },
-    crearDato: function crearDato() {
-      var _this3 = this;
-
-      var url = this.urlg;
-      var modelo = new FormData();
-      modelo.append("descrMarca", this.dato["descrMarca"]); // console.log(modelo);
-
-      axios.post(url, modelo, this.config).then(function (response) {
-        // console.log(response);
         _this3.getdatos();
 
         _this3.verFormulario();
 
-        alert("Nueva Marca creada con éxito");
+        alert("Marca Modificado con éxito");
         _this3.errors = [];
       })["catch"](function (error) {
-        _this3.errors = "Corrija para poder crear con éxito";
+        _this3.errors = "Corrija para poder editar con éxito";
       });
     },
     changePage: function changePage(page) {
@@ -38089,11 +38218,15 @@ var render = function() {
                     attrs: { type: "button" },
                     on: {
                       click: function($event) {
-                        return _vm.verFormulario()
+                        return _vm.verformulario(1)
                       }
                     }
                   },
-                  [_vm._v("VER CONTADORES")]
+                  [
+                    _vm._v(
+                      "\n                                VER CONTADORES\n                            "
+                    )
+                  ]
                 ),
                 _vm._v(" "),
                 _c(
@@ -38103,11 +38236,15 @@ var render = function() {
                     attrs: { type: "button" },
                     on: {
                       click: function($event) {
-                        return _vm.crearFormulario()
+                        return _vm.verformulario(2)
                       }
                     }
                   },
-                  [_vm._v("CREAR CONTADOR")]
+                  [
+                    _vm._v(
+                      "\n                                CREAR CONTADOR\n                            "
+                    )
+                  ]
                 )
               ]),
               _vm._v(" "),
@@ -38168,14 +38305,18 @@ var render = function() {
                                   _c("td", [_vm._v(_vm._s(dato.codMat))]),
                                   _vm._v(" "),
                                   _c("td", [
-                                    _vm._v(_vm._s(dato.nomb + " " + dato.apepa))
+                                    _vm._v(
+                                      "\n                                                " +
+                                        _vm._s(dato.nomb + " " + dato.apepa) +
+                                        "\n                                            "
+                                    )
                                   ]),
                                   _vm._v(" "),
                                   _c("td", [
                                     _vm._v(
-                                      "\n                            " +
+                                      "\n                                                " +
                                         _vm._s(dato.descrTipoP) +
-                                        "\n                          "
+                                        "\n                                            "
                                     )
                                   ]),
                                   _vm._v(" "),
@@ -38191,7 +38332,11 @@ var render = function() {
                                           }
                                         }
                                       },
-                                      [_vm._v("EDITAR")]
+                                      [
+                                        _vm._v(
+                                          "\n                                                    EDITAR\n                                                "
+                                        )
+                                      ]
                                     )
                                   ])
                                 ]
@@ -38201,7 +38346,9 @@ var render = function() {
                             (_vm.datos.total = 0)
                               ? _c("tr", { attrs: { align: "center" } }, [
                                   _c("td", { attrs: { colspan: "4" } }, [
-                                    _vm._v(" NO EXISTEN COTADORES REGISTRADOS")
+                                    _vm._v(
+                                      "\n                                                NO EXISTEN COTADORES\n                                                REGISTRADOS\n                                            "
+                                    )
                                   ])
                                 ])
                               : _vm._e()
@@ -38328,10 +38475,10 @@ var render = function() {
                         "div",
                         { staticClass: "card-body" },
                         [
-                          _c("h2", [_vm._v("REGISTRAR CATEGORIA")]),
+                          _c("h2", [_vm._v("REGISTRAR CONTADOR")]),
                           _vm._v(" "),
                           _c("label", { attrs: { for: "" } }, [
-                            _vm._v("Nombre de categoria:")
+                            _vm._v("Codigo de Matricula:")
                           ]),
                           _vm._v(" "),
                           _c("input", {
@@ -38339,18 +38486,19 @@ var render = function() {
                               {
                                 name: "model",
                                 rawName: "v-model",
-                                value: _vm.dato["descrTipoP"],
-                                expression: "dato['descrTipoP']"
+                                value: _vm.dato["codMat"],
+                                expression: "dato['codMat']"
                               }
                             ],
                             staticClass: "form-control",
                             attrs: {
                               type: "text",
-                              value: "",
-                              placeholder: "Nombre de Categoria",
+                              placeholder: "Codigo de Matricula",
+                              onkeypress: "return numeros(event)",
+                              maxlength: "11",
                               required: ""
                             },
-                            domProps: { value: _vm.dato["descrTipoP"] },
+                            domProps: { value: _vm.dato["codMat"] },
                             on: {
                               input: function($event) {
                                 if ($event.target.composing) {
@@ -38358,33 +38506,178 @@ var render = function() {
                                 }
                                 _vm.$set(
                                   _vm.dato,
-                                  "descrTipoP",
+                                  "codMat",
                                   $event.target.value
                                 )
                               }
                             }
                           }),
                           _vm._v(" "),
+                          _c("label", { attrs: { for: "" } }, [_vm._v("Dni:")]),
+                          _vm._v(" "),
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.dato["dni"],
+                                expression: "dato['dni']"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            attrs: {
+                              type: "text",
+                              placeholder: "Dni",
+                              onkeypress: "return numeros(event)",
+                              maxlength: "8",
+                              required: ""
+                            },
+                            domProps: { value: _vm.dato["dni"] },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(_vm.dato, "dni", $event.target.value)
+                              }
+                            }
+                          }),
+                          _vm._v(" "),
                           _c("label", { attrs: { for: "" } }, [
-                            _vm._v("Foto de la Categoria:")
+                            _vm._v("Nombres:")
                           ]),
                           _vm._v(" "),
                           _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.dato["nomb"],
+                                expression: "dato['nomb']"
+                              }
+                            ],
                             staticClass: "form-control",
                             attrs: {
-                              type: "file",
-                              id: "fileC",
-                              placeholder: "BuscarFoto",
+                              type: "text",
+                              placeholder: "Nombres",
+                              onkeypress: "return letras(event)",
+                              maxlength: "40",
                               required: ""
+                            },
+                            domProps: { value: _vm.dato["nomb"] },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(_vm.dato, "nomb", $event.target.value)
+                              }
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("label", { attrs: { for: "" } }, [
+                            _vm._v("Apellidos:")
+                          ]),
+                          _vm._v(" "),
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.dato["apepa"],
+                                expression: "dato['apepa']"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            attrs: {
+                              type: "text",
+                              placeholder: "Apellidosa",
+                              onkeypress: "return letras(event)",
+                              maxlength: "40",
+                              required: ""
+                            },
+                            domProps: { value: _vm.dato["apepa"] },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(_vm.dato, "apepa", $event.target.value)
+                              }
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("label", { attrs: { for: "" } }, [
+                            _vm._v("Correo Electronico:")
+                          ]),
+                          _vm._v(" "),
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.dato["email"],
+                                expression: "dato['email']"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            attrs: {
+                              type: "email",
+                              placeholder: "Correo Electronico",
+                              required: ""
+                            },
+                            domProps: { value: _vm.dato["email"] },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(_vm.dato, "email", $event.target.value)
+                              }
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("label", { attrs: { for: "" } }, [
+                            _vm._v("Fecha de Matricula:")
+                          ]),
+                          _vm._v(" "),
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.dato["fmat"],
+                                expression: "dato['fmat']"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            attrs: { type: "date", required: "" },
+                            domProps: { value: _vm.dato["fmat"] },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(_vm.dato, "fmat", $event.target.value)
+                              }
                             }
                           }),
                           _vm._v(" "),
                           _c("br"),
                           _vm._v(" "),
                           _c("center", [
-                            _c("button", { staticClass: "btn btn-primary" }, [
-                              _vm._v("GUARDAR")
-                            ]),
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-primary",
+                                attrs: { type: "submit" }
+                              },
+                              [
+                                _vm._v(
+                                  "\n                                        GUARDAR\n                                    "
+                                )
+                              ]
+                            ),
                             _vm._v(" "),
                             _c(
                               "button",
@@ -38393,11 +38686,15 @@ var render = function() {
                                 attrs: { type: "button" },
                                 on: {
                                   click: function($event) {
-                                    return _vm.verFormulario()
+                                    return _vm.verformulario(1)
                                   }
                                 }
                               },
-                              [_vm._v("CANCELAR")]
+                              [
+                                _vm._v(
+                                  "\n                                        CANCELAR\n                                    "
+                                )
+                              ]
                             )
                           ])
                         ],
@@ -38561,7 +38858,9 @@ var render = function() {
                           _vm._v(" "),
                           _c("center", [
                             _c("button", { staticClass: "btn btn-primary" }, [
-                              _vm._v("GUARDAR")
+                              _vm._v(
+                                "\n                                        GUARDAR\n                                    "
+                              )
                             ]),
                             _vm._v(" "),
                             _c(
@@ -38575,7 +38874,11 @@ var render = function() {
                                   }
                                 }
                               },
-                              [_vm._v("CANCELAR")]
+                              [
+                                _vm._v(
+                                  "\n                                        CANCELAR\n                                    "
+                                )
+                              ]
                             )
                           ])
                         ],
@@ -51015,12 +51318,12 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-Vue.component('example-component', __webpack_require__(/*! ./components/ExampleComponent.vue */ "./resources/js/components/ExampleComponent.vue")["default"]);
-Vue.component('menuprincipal', __webpack_require__(/*! ./components/menu.vue */ "./resources/js/components/menu.vue")["default"]);
-Vue.component('principal', __webpack_require__(/*! ./components/principal.vue */ "./resources/js/components/principal.vue")["default"]);
-Vue.component('contadores', __webpack_require__(/*! ./components/contadores.vue */ "./resources/js/components/contadores.vue")["default"]);
-Vue.component('partidos', __webpack_require__(/*! ./components/partidos.vue */ "./resources/js/components/partidos.vue")["default"]);
-Vue.component('eleccion', __webpack_require__(/*! ./components/eleccion.vue */ "./resources/js/components/eleccion.vue")["default"]);
+Vue.component("example-component", __webpack_require__(/*! ./components/ExampleComponent.vue */ "./resources/js/components/ExampleComponent.vue")["default"]);
+Vue.component("menuprincipal", __webpack_require__(/*! ./components/menu.vue */ "./resources/js/components/menu.vue")["default"]);
+Vue.component("principal", __webpack_require__(/*! ./components/principal.vue */ "./resources/js/components/principal.vue")["default"]);
+Vue.component("contadores", __webpack_require__(/*! ./components/contadores.vue */ "./resources/js/components/contadores.vue")["default"]);
+Vue.component("partidos", __webpack_require__(/*! ./components/partidos.vue */ "./resources/js/components/partidos.vue")["default"]);
+Vue.component("eleccion", __webpack_require__(/*! ./components/eleccion.vue */ "./resources/js/components/eleccion.vue")["default"]);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -51028,7 +51331,7 @@ Vue.component('eleccion', __webpack_require__(/*! ./components/eleccion.vue */ "
  */
 
 var app = new Vue({
-  el: '#app'
+  el: "#app"
 });
 
 /***/ }),
@@ -51436,8 +51739,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! E:\PREMIUM\votacion\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! E:\PREMIUM\votacion\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! E:\REPOSITORIO\votacion\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! E:\REPOSITORIO\votacion\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

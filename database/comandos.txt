@@ -18,6 +18,7 @@ composer require greenter/greenter
 cp .env.example .env
 php artisan key:generate
 npm install
+composer require maatwebsite/excel
 
 creacion de modelos:
 

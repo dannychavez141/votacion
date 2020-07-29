@@ -16,7 +16,23 @@ class EstadoCcpuController extends Controller
     {
         //
     }
+    public function all(Request $request)
+    {
 
+        $datos = EstadoCcpu::orderBy('id', 'ASC')->paginate(20);
+
+        return [
+            'pagination' => [
+                'total'         => $datos->total(),
+                'current_page'  => $datos->currentPage(),
+                'per_page'      => $datos->perPage(),
+                'last_page'     => $datos->lastPage(),
+                'from'          => $datos->firstItem(),
+                'to'            => $datos->lastPage(),
+            ],
+            'datos' => $datos
+        ];
+    }
     /**
      * Show the form for creating a new resource.
      *

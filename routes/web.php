@@ -20,6 +20,9 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+//estados
+Route::get('/estados/all', 'EstadoCcpuController@all')->middleware('auth');
+Route::resource('/estados', 'EstadoCcpuController')->middleware('auth');
 //usuarios
 Route::get('/contadores/all', 'UserController@all')->middleware('auth');
 Route::resource('/contadores', 'UserController')->middleware('auth');
