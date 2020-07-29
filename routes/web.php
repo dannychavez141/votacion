@@ -20,3 +20,6 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+//usuarios
+Route::get('/contadores/all', 'UserController@all')->middleware('auth');
+Route::resource('/contadores', 'UserController')->middleware('auth');

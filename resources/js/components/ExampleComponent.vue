@@ -7,6 +7,8 @@
 
                     <div class="card-body">
                         I'm an example component.
+                        <h1>SISTEMA DE VOTACION VIRTUAL CCPU</h1>
+          <img src="img/logo.png" alt />
                     </div>
                 </div>
             </div>

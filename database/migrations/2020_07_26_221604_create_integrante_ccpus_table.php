@@ -14,6 +14,8 @@ class CreateIntegranteCcpusTable extends Migration
     public function up()
     {
         Schema::create('integrante_ccpus', function (Blueprint $table) {
+            $table->unsignedBigInteger('ideleccion');
+            $table->foreign('ideleccion')->references('id')->on('eleccion_ccpus');
             $table->unsignedBigInteger('idgrupo');
             $table->foreign('idgrupo')->references('id')->on('grupo_ccpus');
             $table->unsignedBigInteger('idusuario');
