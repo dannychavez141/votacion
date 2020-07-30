@@ -19,7 +19,7 @@ class UserController extends Controller
     public function all(Request $request)
     {
 
-        $datos = User::orWhereRaw("concat(codMat,dni,nomb,apepa) LIKE ?", ["%".$request['busq']."%"])->where("idEst","=","2")->orderBy('id', 'ASC')->paginate(20);
+        $datos = User::orWhereRaw("concat(codMat,dni,nomb,apepa) LIKE ?", ["%".$request['busq']."%"])->where("idTipo","=","2")->orderBy('id', 'ASC')->paginate(20);
 
         return [
             'pagination' => [
@@ -51,28 +51,41 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $dato = new User();
+       $dato = new User();
         $dato->codMat = $request->get('codMat');
         $dato->dni = $request->get('dni');
         $dato->nomb = $request->get('nomb');
         $dato->apepa = $request->get('apepa');
         $dato->email = $request->get('email');
         $dato->fmat = $request->get('fmat');
-        $dato->password = Hash::make($request->get('codMat'));
+        $dato->password = bcrypt($request->get('codMat'));
         $dato->ext = "0";
         $dato->idTipo = "2";
         $dato->idEst = "1";
         $dato->save();
+       /* $dato = new User();
+        $dato->codMat = $request->codMat;
+        $dato->dni = $request->dni;
+        $dato->nomb = $request->nomb;
+        $dato->apepa = $request->apepa;
+        $dato->email = $request->email;
+        $dato->fmat = $request->fmat;
+        $dato->password = Hash::make($request->codMat);
+        $dato->ext = "0";
+        $dato->idTipo = "2";
+        $dato->idEst = "1";
+        $dato->save();*/
+
         return  $dato;
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\TipoCcpu  $tipoCcpu
+     * @param  \App\User  $User
      * @return \Illuminate\Http\Response
      */
-    public function show( $tipoCcpu)
+    public function show( $User)
     {
         //
     }
@@ -80,10 +93,10 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\TipoCcpu  $tipoCcpu
+     * @param  \App\User  $User
      * @return \Illuminate\Http\Response
      */
-    public function edit( $tipoCcpu)
+    public function edit($User)
     {
         //
     }
@@ -92,21 +105,31 @@ class UserController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\TipoCcpu  $tipoCcpu
+     * @param  \App\User  $User
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,  $tipoCcpu)
+    public function update(Request $request,  $User)
     {
-        //
+        $dato = User::find($User);
+        $dato->codMat = $request->get('codMat');
+        $dato->dni = $request->get('dni');
+        $dato->nomb = $request->get('nomb');
+        $dato->apepa = $request->get('apepa');
+        $dato->email = $request->get('email');
+        $dato->fmat = $request->get('fmat');
+        $dato->password = bcrypt($request->get('codMat'));
+        $dato->idEst = $request->get('idEst');
+        $dato->save();
+        return  $dato;
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\TipoCcpu  $tipoCcpu
+     * @param  \App\User  $User
      * @return \Illuminate\Http\Response
      */
-    public function destroy( $tipoCcpu)
+    public function destroy( $User)
     {
         //
     }

@@ -2226,35 +2226,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2346,19 +2317,12 @@ __webpack_require__.r(__webpack_exports__);
 
       var url = this.urlg;
       var modelo = new FormData();
-      console.log(this.dato["codMat"]);
-      console.log(this.dato["dni"]);
-      console.log(this.dato["nomb"]);
-      console.log(this.dato["apepa"]);
-      console.log(this.dato["email"]);
-      console.log(this.dato["fmat"]);
       modelo.append("codMat", this.dato["codMat"]);
       modelo.append("dni", this.dato["dni"]);
       modelo.append("nomb", this.dato["nomb"]);
       modelo.append("apepa", this.dato["apepa"]);
       modelo.append("email", this.dato["email"]);
       modelo.append("fmat", this.dato["fmat"]);
-      console.log(modelo);
       axios.post(url, modelo, this.config).then(function (response) {
         // console.log(response);
         _this2.getdatos();
@@ -2377,7 +2341,13 @@ __webpack_require__.r(__webpack_exports__);
       var url = this.urlg + "/" + this.dato.id;
       var modelo = new FormData();
       modelo.append("_method", "put");
-      modelo.append("descrMarca", this.dato["descrMarca"]);
+      modelo.append("id", this.dato["id"]);
+      modelo.append("codMat", this.dato["codMat"]);
+      modelo.append("dni", this.dato["dni"]);
+      modelo.append("nomb", this.dato["nomb"]);
+      modelo.append("apepa", this.dato["apepa"]);
+      modelo.append("email", this.dato["email"]);
+      modelo.append("fmat", this.dato["fmat"]);
       modelo.append("idEst", this.estado["id"]); //  console.log(modelo.get('descrTipoP'));
       //   console.log(modelo.get('idEst'));
 
@@ -2405,9 +2375,22 @@ __webpack_require__.r(__webpack_exports__);
       axios.get(urldatos).then(function (response) {
         //  console.log("apidatos:");
         //  console.log(response.data);
-        _this4.estados = response.data; //   console.log("estados:");
-        //console.log(this.estados);
+        _this4.estados = response.data.datos.data; //   console.log("estados:");
+
+        console.log(_this4.estados);
       });
+    },
+    mostrarestado: function mostrarestado(dato) {
+      var estado = "";
+
+      for (var i = 0; i < this.estados.length; i++) {
+        if (this.estados[i]["id"] == dato["idEst"]) {
+          this.estado = this.estados[i];
+          estado = this.estados[i]["descr"];
+        }
+      }
+
+      return estado;
     }
   },
   mounted: function mounted() {
@@ -38222,11 +38205,7 @@ var render = function() {
                       }
                     }
                   },
-                  [
-                    _vm._v(
-                      "\n                                VER CONTADORES\n                            "
-                    )
-                  ]
+                  [_vm._v("VER CONTADORES")]
                 ),
                 _vm._v(" "),
                 _c(
@@ -38240,11 +38219,7 @@ var render = function() {
                       }
                     }
                   },
-                  [
-                    _vm._v(
-                      "\n                                CREAR CONTADOR\n                            "
-                    )
-                  ]
+                  [_vm._v("CREAR CONTADOR")]
                 )
               ]),
               _vm._v(" "),
@@ -38306,18 +38281,14 @@ var render = function() {
                                   _vm._v(" "),
                                   _c("td", [
                                     _vm._v(
-                                      "\n                                                " +
+                                      "\n                        " +
                                         _vm._s(dato.nomb + " " + dato.apepa) +
-                                        "\n                                            "
+                                        "\n                      "
                                     )
                                   ]),
                                   _vm._v(" "),
                                   _c("td", [
-                                    _vm._v(
-                                      "\n                                                " +
-                                        _vm._s(dato.descrTipoP) +
-                                        "\n                                            "
-                                    )
+                                    _vm._v(_vm._s(_vm.mostrarestado(dato)))
                                   ]),
                                   _vm._v(" "),
                                   _c("td", [
@@ -38332,22 +38303,18 @@ var render = function() {
                                           }
                                         }
                                       },
-                                      [
-                                        _vm._v(
-                                          "\n                                                    EDITAR\n                                                "
-                                        )
-                                      ]
+                                      [_vm._v("EDITAR")]
                                     )
                                   ])
                                 ]
                               )
                             }),
                             _vm._v(" "),
-                            (_vm.datos.total = 0)
+                            _vm.datos.total == 0
                               ? _c("tr", { attrs: { align: "center" } }, [
                                   _c("td", { attrs: { colspan: "4" } }, [
                                     _vm._v(
-                                      "\n                                                NO EXISTEN COTADORES\n                                                REGISTRADOS\n                                            "
+                                      "\n                        NO EXISTEN COTADORES\n                        REGISTRADOS\n                      "
                                     )
                                   ])
                                 ])
@@ -38672,11 +38639,7 @@ var render = function() {
                                 staticClass: "btn btn-primary",
                                 attrs: { type: "submit" }
                               },
-                              [
-                                _vm._v(
-                                  "\n                                        GUARDAR\n                                    "
-                                )
-                              ]
+                              [_vm._v("GUARDAR")]
                             ),
                             _vm._v(" "),
                             _c(
@@ -38690,11 +38653,7 @@ var render = function() {
                                   }
                                 }
                               },
-                              [
-                                _vm._v(
-                                  "\n                                        CANCELAR\n                                    "
-                                )
-                              ]
+                              [_vm._v("CANCELAR")]
                             )
                           ])
                         ],
@@ -38755,7 +38714,7 @@ var render = function() {
                           }),
                           _vm._v(" "),
                           _c("label", { attrs: { for: "" } }, [
-                            _vm._v("Nombre de categoria:")
+                            _vm._v("Codigo de Matricula:")
                           ]),
                           _vm._v(" "),
                           _c("input", {
@@ -38763,18 +38722,19 @@ var render = function() {
                               {
                                 name: "model",
                                 rawName: "v-model",
-                                value: _vm.dato.descrTipoP,
-                                expression: "dato.descrTipoP"
+                                value: _vm.dato["codMat"],
+                                expression: "dato['codMat']"
                               }
                             ],
                             staticClass: "form-control",
                             attrs: {
                               type: "text",
-                              name: "descrTipoP",
-                              placeholder: "Nombre de Categoria",
+                              placeholder: "Codigo de Matricula",
+                              onkeypress: "return numeros(event)",
+                              maxlength: "11",
                               required: ""
                             },
-                            domProps: { value: _vm.dato.descrTipoP },
+                            domProps: { value: _vm.dato["codMat"] },
                             on: {
                               input: function($event) {
                                 if ($event.target.composing) {
@@ -38782,23 +38742,160 @@ var render = function() {
                                 }
                                 _vm.$set(
                                   _vm.dato,
-                                  "descrTipoP",
+                                  "codMat",
                                   $event.target.value
                                 )
                               }
                             }
                           }),
                           _vm._v(" "),
+                          _c("label", { attrs: { for: "" } }, [_vm._v("Dni:")]),
+                          _vm._v(" "),
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.dato["dni"],
+                                expression: "dato['dni']"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            attrs: {
+                              type: "text",
+                              placeholder: "Dni",
+                              onkeypress: "return numeros(event)",
+                              maxlength: "8",
+                              required: ""
+                            },
+                            domProps: { value: _vm.dato["dni"] },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(_vm.dato, "dni", $event.target.value)
+                              }
+                            }
+                          }),
+                          _vm._v(" "),
                           _c("label", { attrs: { for: "" } }, [
-                            _vm._v("Foto de la Categoria:")
+                            _vm._v("Nombres:")
                           ]),
                           _vm._v(" "),
                           _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.dato["nomb"],
+                                expression: "dato['nomb']"
+                              }
+                            ],
                             staticClass: "form-control",
                             attrs: {
-                              type: "file",
-                              id: "fileM",
-                              placeholder: "Buscar Foto"
+                              type: "text",
+                              placeholder: "Nombres",
+                              onkeypress: "return letras(event)",
+                              maxlength: "40",
+                              required: ""
+                            },
+                            domProps: { value: _vm.dato["nomb"] },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(_vm.dato, "nomb", $event.target.value)
+                              }
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("label", { attrs: { for: "" } }, [
+                            _vm._v("Apellidos:")
+                          ]),
+                          _vm._v(" "),
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.dato["apepa"],
+                                expression: "dato['apepa']"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            attrs: {
+                              type: "text",
+                              placeholder: "Apellidosa",
+                              onkeypress: "return letras(event)",
+                              maxlength: "40",
+                              required: ""
+                            },
+                            domProps: { value: _vm.dato["apepa"] },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(_vm.dato, "apepa", $event.target.value)
+                              }
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("label", { attrs: { for: "" } }, [
+                            _vm._v("Correo Electronico:")
+                          ]),
+                          _vm._v(" "),
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.dato["email"],
+                                expression: "dato['email']"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            attrs: {
+                              type: "email",
+                              placeholder: "Correo Electronico",
+                              required: ""
+                            },
+                            domProps: { value: _vm.dato["email"] },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(_vm.dato, "email", $event.target.value)
+                              }
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("label", { attrs: { for: "" } }, [
+                            _vm._v("Fecha de Matricula:")
+                          ]),
+                          _vm._v(" "),
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.dato["fmat"],
+                                expression: "dato['fmat']"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            attrs: { type: "date", required: "" },
+                            domProps: { value: _vm.dato["fmat"] },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(_vm.dato, "fmat", $event.target.value)
+                              }
                             }
                           }),
                           _vm._v(" "),
@@ -38840,14 +38937,20 @@ var render = function() {
                               _c(
                                 "option",
                                 { domProps: { value: _vm.estado } },
-                                [_vm._v(_vm._s(_vm.estado["descrEst"]))]
+                                [
+                                  _vm._v(
+                                    "\n                    " +
+                                      _vm._s(_vm.estado["descr"]) +
+                                      "\n                  "
+                                  )
+                                ]
                               ),
                               _vm._v(" "),
                               _vm._l(_vm.estados, function(estado, index) {
                                 return _c(
                                   "option",
                                   { key: index, domProps: { value: estado } },
-                                  [_vm._v(_vm._s(estado["descrEst"]))]
+                                  [_vm._v(_vm._s(estado["descr"]))]
                                 )
                               })
                             ],
@@ -38858,9 +38961,7 @@ var render = function() {
                           _vm._v(" "),
                           _c("center", [
                             _c("button", { staticClass: "btn btn-primary" }, [
-                              _vm._v(
-                                "\n                                        GUARDAR\n                                    "
-                              )
+                              _vm._v("GUARDAR")
                             ]),
                             _vm._v(" "),
                             _c(
@@ -38874,11 +38975,7 @@ var render = function() {
                                   }
                                 }
                               },
-                              [
-                                _vm._v(
-                                  "\n                                        CANCELAR\n                                    "
-                                )
-                              ]
+                              [_vm._v("CANCELAR")]
                             )
                           ])
                         ],
@@ -51739,8 +51836,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! E:\REPOSITORIO\votacion\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! E:\REPOSITORIO\votacion\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! E:\PREMIUM\votacion\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! E:\PREMIUM\votacion\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
