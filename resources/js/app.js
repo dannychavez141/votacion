@@ -28,6 +28,7 @@ Vue.component("principal", require("./components/principal.vue").default);
 Vue.component("contadores", require("./components/contadores.vue").default);
 Vue.component("partidos", require("./components/partidos.vue").default);
 Vue.component("eleccion", require("./components/eleccion.vue").default);
+Vue.component("cargo", require("./components/puesto.vue").default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

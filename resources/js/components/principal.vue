@@ -34,7 +34,7 @@
             <div class="col-md-12">
                  <menuprincipal v-if="modo==1"></menuprincipal>
                 <contadores v-if="modo==2"></contadores>
-                <contadores v-if="modo==3"></contadores>
+                <cargo v-if="modo==3"></cargo>
                 <contadores v-if="modo==4"></contadores>
                 <contadores v-if="modo==5"></contadores>
             </div>
