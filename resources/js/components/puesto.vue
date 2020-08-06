@@ -61,7 +61,7 @@
                           >EDITAR</button>
                         </td>
                       </tr>
-                      <tr align="center" v-if="(datos.total == 0)">
+                      <tr align="center" v-if="(datos.len == 0)">
                         <td colspan="4">
                           NO EXISTEN COTADORES
                           REGISTRADOS
@@ -131,27 +131,8 @@
               </div>
               <form method="POST" v-on:submit.prevent="crearDato" enctype="multipart/form-data">
                 <div class="card-body" v-if="modoeditar == 2">
-                  <h2>REGISTRAR CONTADOR</h2>
-                  <label for>Codigo de Matricula:</label>
-                  <input
-                    type="text"
-                    v-model="dato['codMat']"
-                    class="form-control"
-                    placeholder="Codigo de Matricula"
-                    onkeypress="return numeros(event)"
-                    maxlength="11"
-                    required
-                  />
-                  <label for>Dni:</label>
-                  <input
-                    type="text"
-                    v-model="dato['dni']"
-                    class="form-control"
-                    placeholder="Dni"
-                    onkeypress="return numeros(event)"
-                    maxlength="8"
-                    required
-                  />
+                  <h2>REGISTRAR CARGO </h2>
+
                   <label for>Nombres:</label>
                   <input
                     type="text"
@@ -162,26 +143,7 @@
                     maxlength="40"
                     required
                   />
-                  <label for>Apellidos:</label>
-                  <input
-                    type="text"
-                    v-model="dato['apepa']"
-                    class="form-control"
-                    placeholder="Apellidosa"
-                    onkeypress="return letras(event)"
-                    maxlength="40"
-                    required
-                  />
-                  <label for>Correo Electronico:</label>
-                  <input
-                    type="email"
-                    v-model="dato['email']"
-                    class="form-control"
-                    placeholder="Correo Electronico"
-                    required
-                  />
-                  <label for>Fecha de Matricula:</label>
-                  <input type="date" v-model="dato['fmat']" class="form-control" required />
+
                   <br />
                   <center>
                     <button class="btn btn-primary" type="submit">GUARDAR</button>
